@@ -28,21 +28,19 @@ public class NQueen {
     }
     private static boolean diagonalLegal(int col,int row,int[][] cells){
         //TopRight
-        Point topRight=getTopRight(row,col);
-        int i=(int)topRight.getY();//represent col
-        for(int r=(int)topRight.getX();i<cells.length&& r<cells.length;r++){
-            if(col!=i && cells[r][i]==1)
+        Point topLeft= getTL(row,col);
+        int i=(int)topLeft.getY();//represent col
+        for(int r=(int)topLeft.getX();i<=col&& r<=row;r++){
+            if(col!=i && cells[r][i++]==1)
                 return false;
-            i++;
         }
         //TopLeft
-        Point topLeft=getTopLeft(row,col,cells.length);
-        i=(int)topLeft.getY();
-        for(int r=(int)topLeft.getX();i>-1 && r<4;r++){
+        Point topRight= getTR(row,col,cells.length);
+        i=(int)topRight.getY();
+        for(int r=(int)topRight.getX();i>-1 && r<4;r++){
             //System.out.println(i+" "+r);
-            if(col!=i && cells[r][i]==1)
+            if(col!=i && cells[r][i--]==1)
                 return false;
-            i--;
         }
         return true;
     }
@@ -53,7 +51,7 @@ public class NQueen {
         }
         return true;
     }
-    private static Point getTopRight(int r,int c){
+    private static Point getTL(int r, int c){
         if(r==c)
             return new Point(0,0);
             //above
@@ -62,7 +60,7 @@ public class NQueen {
         else
             return new Point(r-c,0);
     }
-    private static Point getTopLeft(int r,int c,int n){
+    private static Point getTR(int r, int c, int n){
         while(r>0 && c<(n-1)){
             r--;
             c++;
