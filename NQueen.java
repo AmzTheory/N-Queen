@@ -1,6 +1,7 @@
 import java.awt.*;
 
 public class NQueen {
+    //int array[]=
     public static int[][] solveProblem(int[][] cells,int currentRow,int n) {
         if (currentRow == n)
             return cells;
@@ -23,10 +24,7 @@ public class NQueen {
         return null;
     }
     private static boolean legalQueen(int col,int row,int[][] cells){
-        if(diagonalLegal(col,row,cells) && verticalLegal(col,row,cells))
-            return true;
-
-        return false;
+        return (diagonalLegal(col,row,cells) && verticalLegal(col,row,cells));
     }
     private static boolean diagonalLegal(int col,int row,int[][] cells){
         //TopRight
